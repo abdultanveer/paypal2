@@ -1,5 +1,6 @@
 package com.example.paypal
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -22,11 +23,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun showSnackBar(view: View) {
+       // showSnack()
+        var intention = Intent(this,HomeActivity::class.java)
+        startActivity(intention)
+    }
+
+    private fun showSnack() {
         //int a = 10
         var a = 10
         var view = findViewById<ConstraintLayout>(R.id.main)
-        var mysnack = Snackbar.make(this,view,"undo delete",Snackbar.LENGTH_LONG)
-        mysnack.setAction("UNDO",{})
+        var mysnack = Snackbar.make(this, view, "undo delete", Snackbar.LENGTH_LONG)
+        mysnack.setAction("UNDO", {})
         mysnack.show()
     }
 }
