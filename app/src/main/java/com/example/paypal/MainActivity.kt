@@ -3,6 +3,7 @@ package com.example.paypal
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.AlarmClock
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -42,5 +43,20 @@ class MainActivity : AppCompatActivity() {
         var mysnack = Snackbar.make(this, view, "undo delete", Snackbar.LENGTH_LONG)
         mysnack.setAction("UNDO", {})
         mysnack.show()
+    }
+
+    fun createAlarm(message: String, hour: Int, minutes: Int) {
+        val intent = Intent(AlarmClock.ACTION_SET_ALARM).apply {
+            putExtra(AlarmClock.EXTRA_MESSAGE, message)
+            putExtra(AlarmClock.EXTRA_HOUR, hour)
+            putExtra(AlarmClock.EXTRA_MINUTES, minutes)
+        }
+       // if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        //}
+    }
+
+    fun setAlarm(view: View) {
+        createAlarm("b2pypl",12,19)
     }
 }
