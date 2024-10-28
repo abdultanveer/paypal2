@@ -2,6 +2,7 @@ package com.example.paypal
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -79,10 +80,16 @@ class MainActivity : AppCompatActivity() {
 
     fun notifyUser(view: View) {
         createNotificationChannel()
+        val intent = Intent(this, HomeActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
         var builder = NotificationCompat.Builder(this, "CHANNEL_ID")
             .setSmallIcon(R.drawable.ic_launcher_background)
             .setContentTitle("roshita")
             .setContentText("raghaveda")
+            .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
         var noObj = builder.build()
         //as = typecasting
