@@ -91,6 +91,9 @@ class MainActivity : AppCompatActivity() {
             .setContentText("raghaveda")
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .addAction(
+                com.google.android.material.R.drawable.abc_btn_radio_to_on_mtrl_000, "call back",
+                pendingIntent)
         var noObj = builder.build()
         //as = typecasting
         val notificationManager: NotificationManager =
