@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.AlarmClock
 import android.view.View
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -13,28 +14,39 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var  textView: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+       textView = findViewById(R.id.textView)
     }
 
     fun showSnackBar(view: View) {
+        startHome()
+    }
+
+    private fun startDialer() {
         var data = Uri.parse("tel:12345678")
-       var dialIntent = Intent(Intent.ACTION_DIAL,data) //implicit intent
+        var dialIntent = Intent(Intent.ACTION_DIAL, data) //implicit intent
         startActivity(dialIntent)
     }
 
     private fun startHome() {
         var intention = Intent(this, HomeActivity::class.java) //explicit intent
         intention.putExtra("co", "pypl")
-        startActivity(intention)
+        startActivityForResult(intention,123)
     }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, dataIntent: Intent?) {
+        super.onActivityResult(requestCode, resultCode, dataIntent)
+        if(resultCode == RESULT_OK){
+            var phno = dataIntent?.getStringExtra("phno")
+            textView.setText(phno)
+        }
+    }
+
 
     private fun showSnack() {
         //int a = 10
