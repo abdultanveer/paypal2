@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     fun showSnackBar(view: View) {
        // showSnack()
         var intention = Intent(this,HomeActivity::class.java)
+        intention.putExtra("co","pypl")
         startActivity(intention)
     }
 
