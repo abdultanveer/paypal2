@@ -1,6 +1,7 @@
 package com.example.paypal
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -23,9 +24,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun showSnackBar(view: View) {
-       // showSnack()
-        var intention = Intent(this,HomeActivity::class.java)
-        intention.putExtra("co","pypl")
+        var data = Uri.parse("tel:12345678")
+       var dialIntent = Intent(Intent.ACTION_DIAL,data) //implicit intent
+        startActivity(dialIntent)
+    }
+
+    private fun startHome() {
+        var intention = Intent(this, HomeActivity::class.java) //explicit intent
+        intention.putExtra("co", "pypl")
         startActivity(intention)
     }
 
