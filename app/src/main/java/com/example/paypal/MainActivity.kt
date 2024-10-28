@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.AlarmClock
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -22,11 +23,43 @@ import com.google.android.material.snackbar.Snackbar
 class MainActivity : AppCompatActivity() {
 
     lateinit var  textView: TextView
+    var TAG = MainActivity::class.java.simpleName
+
+        //"MainActivity"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
        textView = findViewById(R.id.textView)
+        Log.i(TAG,"oncreate-egg")
     }
+
+    override fun onStart() {
+        super.onStart()
+        Log.w(TAG,"onstart-hatched-visible")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG,"onpause-sleep-store data")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.v(TAG,"onresume-wakeup-restore data")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.e(TAG,"onstop-hibernate")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG,"ondestroy-release resources")
+    }
+
+
 
     fun showSnackBar(view: View) {
         startHome()
