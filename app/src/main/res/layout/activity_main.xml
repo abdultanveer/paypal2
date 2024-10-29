@@ -9,10 +9,10 @@
 
     <TextView
         android:id="@+id/textView"
-        android:textColor="@color/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome"
+        android:textColor="@color/logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,23 +53,46 @@
 
     <Button
         android:id="@+id/btnService"
-        android:onClick="startMusic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginBottom="31dp"
+        android:onClick="startMusic"
         android:text="@string/start"
         app:layout_constraintBottom_toTopOf="@+id/btnNotify"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnStop"
-        android:onClick="stopMusic"
         android:layout_width="@dimen/btnWidth"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:onClick="stopMusic"
         android:text="stop"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnService"
         app:layout_constraintStart_toEndOf="@+id/btnService" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="50dp"
+        android:text="submit"
+        android:onClick="handleSubmit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnStop" />
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="84dp"
+        android:ems="10"
+        android:hint="enter name"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

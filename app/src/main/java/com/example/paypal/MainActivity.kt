@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.provider.AlarmClock
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,8 @@ import com.google.android.material.snackbar.Snackbar
 class MainActivity : AppCompatActivity() {
 
     lateinit var  textView: TextView
+    lateinit var nameEditText: EditText
+
     var TAG = MainActivity::class.java.simpleName
 
         //"MainActivity"
@@ -31,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
        textView = findViewById(R.id.textView)
+        nameEditText = findViewById(R.id.etName)
         Log.i(TAG,"oncreate-egg")
     }
 
@@ -162,5 +166,10 @@ class MainActivity : AppCompatActivity() {
     fun stopMusic(view: View) {
         var intent  = Intent(this,MusicService::class.java)
         stopService(intent)
+    }
+
+    fun handleSubmit(view: View) {
+        var typed = nameEditText.text.toString()
+        textView.setText(typed)
     }
 }
