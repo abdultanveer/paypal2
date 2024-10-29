@@ -153,4 +153,14 @@ class MainActivity : AppCompatActivity() {
             notificationManager.createNotificationChannel(channel)
         }
     }
+
+    fun startMusic(view: View) {
+        var intent  = Intent(this,MusicService::class.java)
+       intent.putExtra("co","paypl")
+        startService(intent)
+    }
+    fun stopMusic(view: View) {
+        var intent  = Intent(this,MusicService::class.java)
+        stopService(intent)
+    }
 }
