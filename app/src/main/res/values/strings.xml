@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">paypal</string>
+    <string name="welcome">welcome to android at paypal</string>
 </resources>
