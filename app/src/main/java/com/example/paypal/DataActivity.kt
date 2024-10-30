@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.paypal.database.Item
 import com.example.paypal.database.ItemDao
 import com.example.paypal.database.ItemRoomDatabase
@@ -16,16 +17,19 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class DataActivity : AppCompatActivity() {
+    lateinit var viewModel:DataViewModel
 
     lateinit var dao: ItemDao
-    var count =0
    lateinit var tv: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data)
-         tv  = findViewById(R.id.tvResult)
-        tv.setText(""+0)
+        viewModel = ViewModelProvider(this)[DataViewModel::class.java]
+
+        tv  = findViewById(R.id.tvResult)
+
+        tv.setText(""+viewModel.count)
 
         var database = ItemRoomDatabase.getDatabase(this)
         dao = database.itemDao()
@@ -47,7 +51,7 @@ class DataActivity : AppCompatActivity() {
     }
 
     fun incrementCount(view: View) {
-        count++
-        tv.setText(""+count)
+        viewModel.incrementCountvar()
+        tv.setText(""+viewModel.count)
     }
 }
