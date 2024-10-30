@@ -2,6 +2,8 @@ package com.example.paypal
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,15 +21,22 @@ import kotlinx.coroutines.launch
 
 class DataActivity : AppCompatActivity() {
     lateinit var viewModel:DataViewModel
-
+    var languages = arrayOf("english","hindi","tamil","telgu","kannada","urdu")
     lateinit var dao: ItemDao
    lateinit var tv: TextView
+    lateinit var  languagesListView: ListView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data)
-        viewModel = ViewModelProvider(this)[DataViewModel::class.java]
+        languagesListView = findViewById(R.id.listView)
 
+        viewModel = ViewModelProvider(this)[DataViewModel::class.java]
+        var myAdapter = ArrayAdapter(this,
+            android.R.layout.simple_list_item_1, //visiting card - 1tv
+            android.R.id.text1,
+            languages)
+        languagesListView.adapter = myAdapter
         tv  = findViewById(R.id.tvResult)
 
        // tv.setText(""+viewModel.count)
