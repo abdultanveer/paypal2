@@ -9,12 +9,36 @@
 
     <Button
         android:id="@+id/btnInsert"
-        android:onClick="commitData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="62dp"
         android:layout_marginTop="62dp"
+        android:layout_marginEnd="24dp"
+        android:onClick="commitData"
         android:text="insert"
+        app:layout_constraintEnd_toStartOf="@+id/btnRetreive"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnRetreive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="17dp"
+        android:onClick="getData"
+        android:text="retreive"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnInsert"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="19dp"
+        android:text="result"
+        app:layout_constraintEnd_toStartOf="@+id/btnRetreive"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
