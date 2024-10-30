@@ -1,15 +1,14 @@
 package com.example.paypal
 
+import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.SimpleCursorAdapter
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+
 
 class DataActivity : AppCompatActivity() {
 
@@ -64,6 +64,20 @@ class DataActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
          db = Firebase.firestore
+        //query sms inbox
+        val uriSms = Uri.parse("content://sms/inbox")
+        val dataCursor: Cursor? = getContentResolver().query(uriSms, null, null, null, null)
+        //put the queried data into ann adapter
+        var fromColumnNames = arrayOf("address","body")
+        var toTvResIds = intArrayOf(android.R.id.text1,android.R.id.text2)
+
+        var adapter = SimpleCursorAdapter(this,
+            android.R.layout.simple_list_item_2,
+            dataCursor,fromColumnNames,toTvResIds,0)
+
+        var listView:ListView = findViewById(R.id.listView2)
+        //set the adapter onto listview
+        listView.adapter = adapter
     }
 
     fun commitData(view: View) {
