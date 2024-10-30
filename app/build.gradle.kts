@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.ksp.android)
+    alias(libs.plugins.google.gms.google.services)
 
 }
 
@@ -43,6 +44,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.firebase.firestore)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)

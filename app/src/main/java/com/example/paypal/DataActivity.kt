@@ -1,6 +1,7 @@
 package com.example.paypal
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
@@ -16,18 +17,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.paypal.database.Item
 import com.example.paypal.database.ItemDao
 import com.example.paypal.database.ItemRoomDatabase
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class DataActivity : AppCompatActivity() {
+
     lateinit var viewModel:DataViewModel
     var languages = arrayOf("english","hindi","tamil","telgu","kannada","urdu")
     lateinit var dao: ItemDao
    lateinit var tv: TextView
     lateinit var  recyclerView: RecyclerView
-
+    lateinit var db:FirebaseFirestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data)
@@ -53,6 +58,12 @@ class DataActivity : AppCompatActivity() {
     //me giving my phno to the postman
 
 
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+         db = Firebase.firestore
     }
 
     fun commitData(view: View) {
@@ -83,5 +94,40 @@ class DataActivity : AppCompatActivity() {
             //receiving the update/notification
             tv.setText(update.toString())
         }
+    }
+
+    fun addFb(view: View) {
+        val user = hashMapOf(
+            "first" to "sangeeth",
+            "last" to "abhi",
+            "born" to 1815
+        )
+
+// Add a new document with a generated ID
+        db.collection("students")
+            .add(user)
+            .addOnSuccessListener { documentReference ->
+                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error adding document", e)
+            }
+    }
+
+    companion object{
+        var TAG = DataActivity::class.java.simpleName
+    }
+
+    fun getDataFb(view: View) {
+        db.collection("students")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    Log.d(TAG, "${document.id} => ${document.data}")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents.", exception)
+            }
     }
 }
