@@ -2,12 +2,15 @@ package com.example.paypal
 
 import android.os.CountDownTimer
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class DataViewModel:ViewModel() {
     var count =0
     lateinit var timer: CountDownTimer
-    var _seconds:Int =  0    //_ means its a mutable variable
+    //to make seconds observable -- wrap it with livedata
+    var _seconds = MutableLiveData<Int>()  //_ means its a mutable variable
+    //_ means its a mutable variable
 
    fun incrementCountvar(){
        count++
@@ -17,7 +20,7 @@ class DataViewModel:ViewModel() {
         timer = object :CountDownTimer(10_000,1_000){
             override fun onTick(millisUntilFinished: Long) {
                 Log.i(TAG,"time remaining --"+millisUntilFinished)
-                _seconds = millisUntilFinished.toInt()
+                _seconds.value = millisUntilFinished.toInt()
             }
             override fun onFinish() {
                 Log.i(TAG,"timer finished")
