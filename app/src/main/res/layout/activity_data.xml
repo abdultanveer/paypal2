@@ -66,8 +66,8 @@
         app:layout_constraintEnd_toStartOf="@+id/btnInc"
         app:layout_constraintTop_toTopOf="@+id/btnInc" />
 
-    <ListView
-        android:id="@+id/listView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:layout_marginStart="1dp"

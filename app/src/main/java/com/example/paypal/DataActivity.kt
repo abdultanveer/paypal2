@@ -11,6 +11,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.paypal.database.Item
 import com.example.paypal.database.ItemDao
 import com.example.paypal.database.ItemRoomDatabase
@@ -24,19 +26,22 @@ class DataActivity : AppCompatActivity() {
     var languages = arrayOf("english","hindi","tamil","telgu","kannada","urdu")
     lateinit var dao: ItemDao
    lateinit var tv: TextView
-    lateinit var  languagesListView: ListView
+    lateinit var  recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data)
-        languagesListView = findViewById(R.id.listView)
-
+        recyclerView = findViewById(R.id.recyclerview)
+        recyclerView.layoutManager = LinearLayoutManager(this)
         viewModel = ViewModelProvider(this)[DataViewModel::class.java]
-        var myAdapter = ArrayAdapter(this,
+       /* var myAdapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1, //visiting card - 1tv
             android.R.id.text1,
-            languages)
-        languagesListView.adapter = myAdapter
+            languages)*/
+
+        var myAdapter = LangsAdapter(languages)
+        recyclerView.adapter = myAdapter
+
         tv  = findViewById(R.id.tvResult)
 
        // tv.setText(""+viewModel.count)
