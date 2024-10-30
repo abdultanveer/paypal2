@@ -18,10 +18,15 @@ import kotlinx.coroutines.launch
 class DataActivity : AppCompatActivity() {
 
     lateinit var dao: ItemDao
+    var count =0
+   lateinit var tv: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data)
+         tv  = findViewById(R.id.tvResult)
+        tv.setText(""+0)
+
         var database = ItemRoomDatabase.getDatabase(this)
         dao = database.itemDao()
 
@@ -37,8 +42,12 @@ class DataActivity : AppCompatActivity() {
     fun getData(view: View) {
         GlobalScope.launch(Dispatchers.Main) {
             var item =  dao.getItem(11).first()
-            var tv: TextView = findViewById(R.id.tvResult)
             tv.setText(item.itemName)
         }
+    }
+
+    fun incrementCount(view: View) {
+        count++
+        tv.setText(""+count)
     }
 }

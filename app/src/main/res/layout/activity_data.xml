@@ -41,4 +41,15 @@
         android:text="result"
         app:layout_constraintEnd_toStartOf="@+id/btnRetreive"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnInc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="74dp"
+        android:text="increment"
+        android:onClick="incrementCount"
+        app:layout_constraintEnd_toEndOf="@+id/btnRetreive"
+        app:layout_constraintTop_toBottomOf="@+id/btnInsert" />
 </androidx.constraintlayout.widget.ConstraintLayout>
