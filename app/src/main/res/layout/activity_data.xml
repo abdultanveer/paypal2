@@ -48,8 +48,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="74dp"
-        android:text="increment"
         android:onClick="incrementCount"
+        android:text="increment"
         app:layout_constraintEnd_toEndOf="@+id/btnRetreive"
         app:layout_constraintTop_toBottomOf="@+id/btnInsert" />
+
+    <Button
+        android:id="@+id/btnTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="7dp"
+        android:onClick="beginTimer"
+        android:text="start timer"
+        app:layout_constraintEnd_toStartOf="@+id/btnInc"
+        app:layout_constraintTop_toTopOf="@+id/btnInc" />
 </androidx.constraintlayout.widget.ConstraintLayout>

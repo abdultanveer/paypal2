@@ -54,4 +54,9 @@ class DataActivity : AppCompatActivity() {
         viewModel.incrementCountvar()
         tv.setText(""+viewModel.count)
     }
+
+    fun beginTimer(view: View) {
+        viewModel.startTimer()
+        tv.setText(""+viewModel._seconds)
+    }
 }
