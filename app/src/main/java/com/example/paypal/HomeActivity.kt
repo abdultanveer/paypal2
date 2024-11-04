@@ -48,7 +48,9 @@ var b = 20
     private fun getJsonNet() {
     GlobalScope.launch {   //launch = coroutine
 
-        val listResult = MarsApi.retrofitService.getPhotos()
+      //  val listResult = MarsApi.retrofitService.getPhotos()
+        val listResult = MarsApi.retrofitService.getPhotos().get(0).imgSrc
+
         Log.i(TAG,listResult)
 
     }
