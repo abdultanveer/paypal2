@@ -7,6 +7,9 @@ public class SanngeethAbiram {
         return a + b;
     }
 
+//suspendable function -- funnction which you anticipate would take more time to execute
+    //compared to other functions eg n/w call, db call, io call
+
 
     void multiply(int a, int b,MobilePhone phoneno){
         try {

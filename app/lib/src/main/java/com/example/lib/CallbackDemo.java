@@ -7,7 +7,7 @@ public class CallbackDemo {
         SanngeethAbiram studennt = new SanngeethAbiram();
         new Thread(){
             @Override
-            public void run() {
+            public void run() { //file
                 super.run();
                 System.out.println("addition result a--"+ studennt.add(10,20));
                 studennt.multiply(5,4,ansarisPhno);
