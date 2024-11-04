@@ -47,6 +47,20 @@ var b = 20
         }
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        var a = 15
+        var b = a * 20
+        var c = sum(a,b)
+
+        throw NullPointerException("debugginn demo")
+    }
+
+    fun sum(a:Int,b:Int):Int{
+        return  a+b
+    }
+
     private fun getJsonNet() {
     GlobalScope.launch(Dispatchers.Main) {   //launch = coroutine
 
