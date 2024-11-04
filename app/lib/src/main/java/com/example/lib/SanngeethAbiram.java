@@ -8,11 +8,11 @@ public class SanngeethAbiram {
     }
 
 
-    int multiply(int a, int b){
+    void multiply(int a, int b,MobilePhone phoneno){
         try {
             Thread.sleep(10000);
             int res = a * b;
-            return  res;
+             phoneno.multiplicationResult(res);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
