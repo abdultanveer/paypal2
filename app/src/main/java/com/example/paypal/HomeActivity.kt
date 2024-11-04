@@ -10,8 +10,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import coil.load
 import com.example.paypal.databinding.ActivityHomeBinding
 import com.example.paypal.network.MarsApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -46,12 +48,14 @@ var b = 20
     }
 
     private fun getJsonNet() {
-    GlobalScope.launch {   //launch = coroutine
+    GlobalScope.launch(Dispatchers.Main) {   //launch = coroutine
 
       //  val listResult = MarsApi.retrofitService.getPhotos()
-        val listResult = MarsApi.retrofitService.getPhotos().get(0).imgSrc
+        val urlImage = MarsApi.retrofitService.getPhotos().get(0).imgSrc
+        binding.imageView.load(urlImage)
+        //touching ui immageview in bacckground thread -- not allowed
 
-        Log.i(TAG,listResult)
+        Log.i(TAG,urlImage)
 
     }
     }
