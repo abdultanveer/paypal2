@@ -51,10 +51,14 @@ var b = 20
     override fun onResume() {
         super.onResume()
         var a = 15
-        var b = a * 20
-        var c = sum(a,b)
+        repeat(5){
+            var b = a * 20
+            var c = sum(a,b)
+            b++
+        }
 
-        throw NullPointerException("debugginn demo")
+
+       // throw NullPointerException("debugginn demo")
     }
 
     fun sum(a:Int,b:Int):Int{
