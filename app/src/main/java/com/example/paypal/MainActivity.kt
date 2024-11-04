@@ -22,7 +22,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var  textView: TextView
+    lateinit var  textView: TextView //declarationn
     var TAG = MainActivity::class.java.simpleName
 
         //"MainActivity"
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-       textView = findViewById(R.id.textView)
+       textView = findViewById(R.id.textView) //gettinng handle
         Log.i(TAG,"oncreate-egg")
     }
 
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, dataIntent)
         if(resultCode == RESULT_OK){
             var phno = dataIntent?.getStringExtra("phno")
-            textView.setText(phno)
+            textView.setText(phno) //using it
         }
     }
 
