@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "paypal"
 include(":app")
+include(":app:lib")
